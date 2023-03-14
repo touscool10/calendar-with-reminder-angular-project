@@ -1,12 +1,12 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { BreakpointObserver } from '@angular/cdk/layout';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { MatTabChangeEvent } from '@angular/material/tabs';
-import { Subscription } from 'rxjs';
+import { LayoutService } from 'src/app/shared/layout.service';
 import { CalendarService } from '../calendar/calendar.service';
-import { CreateEventComponent } from '../event/create-event.component';
-import { EventService } from '../event/event.service';
+import { CreateEventComponent } from '../event/create-event/create-event.component';
 import { Events } from '../event/interfaces';
-import { Day, Month, MonthDays } from './interfaces';
+import { ListEventComponent } from '../event/list-event/list-event.component';
+import { Day, MonthDays } from './interfaces';
 
 @Component({
   selector: 'app-month',
@@ -43,6 +43,7 @@ export class MonthComponent implements OnInit {
   constructor(
     private calendarService: CalendarService,
     private dialog: MatDialog,
+    public layoutService: LayoutService,
   ) {
 
   }
@@ -51,11 +52,11 @@ export class MonthComponent implements OnInit {
   ngOnInit(): void {
 
     this.calendarService
-          .getUpdateSubject()
+          .getUpdateAllEvents()
           .subscribe(eventsArray => {
             this.refreshAllEvents(eventsArray);
             this.init();
-          });
+    });
 
   }
 
@@ -218,6 +219,25 @@ export class MonthComponent implements OnInit {
     });
   }
 
+  openListEventsDialog(day: MonthDays) {
+
+    const config = new MatDialogConfig();
+
+    config.disableClose = false;
+    config.autoFocus = true;
+    config.panelClass = "modal-panel";
+
+    config.data =  day;
+
+    const dialogRef = this.dialog.open(ListEventComponent, config);
+
+    dialogRef.afterClosed().subscribe(result => {
+
+        if (result) {
+          console.log("result in openListEventsDialog method : ", result);
+        }
+    });
+  }
 
 
 }

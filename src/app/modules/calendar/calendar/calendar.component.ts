@@ -1,7 +1,7 @@
 import { CalendarService } from './calendar.service';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { CreateEventComponent } from '../event/create-event.component';
+import { CreateEventComponent } from '../event/create-event/create-event.component';
 import { Events } from '../event/interfaces';
 import { Month } from '../month/interfaces';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';

@@ -1,14 +1,14 @@
 import { Component, Inject, Input, OnDestroy, OnInit, Optional } from '@angular/core';
 import { FormBuilder, FormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Events } from './interfaces';
+import { Events } from '../interfaces';
 import { MAT_MOMENT_DATE_FORMATS,  MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 
 import { AlertService } from 'src/app/shared/alert.service';
 import * as moment from 'moment';
-import { EventService } from './event.service';
-import { CalendarService } from '../calendar/calendar.service';
+import { EventService } from '../event.service';
+import { CalendarService } from '../../calendar/calendar.service';
 
 @Component({
   selector: 'app-create-event',
@@ -106,7 +106,7 @@ export class CreateEventComponent implements OnInit, OnDestroy {
 
             this.closeDialog(this.events);
 
-            this.calendarService.updateChields(this.events);
+            this.calendarService.updateAllEvents(this.events);
 
           }else {
             this.alertService.error("Event not found", 3);
@@ -155,7 +155,7 @@ export class CreateEventComponent implements OnInit, OnDestroy {
           this.closeDialog(this.events);
           //this.eventService.emitWhenEventsChange(this.events);
 
-          this.calendarService.updateChields(this.events);
+          this.calendarService.updateAllEvents(this.events);
 
 
       } else {
@@ -185,7 +185,7 @@ export class CreateEventComponent implements OnInit, OnDestroy {
 
             //this.eventService.emitWhenEventsChange(this.events);
 
-            this.calendarService.updateChields(this.events);
+            this.calendarService.updateAllEvents(this.events);
 
           }else {
             this.alertService.error("Event not found", 3);

@@ -1,4 +1,7 @@
-mat-grid-tile{
+$color:  grey;
+$color-primary: #3f51b5;
+
+/*mat-grid-tile{
   background-color: white;
   border: 1px solid grey;
   grid-template-rows: 200px auto;
@@ -36,5 +39,90 @@ mat-grid-list{
   display: flex;
   flex-direction: column;
 }
+
+.mat-grid-tile-content{
+
+} */
+
+mat-grid-tile{
+  background-color: white;
+  border: 1px solid $color;
+  grid-template-rows: 200px auto;
+  overflow: auto;
+}
+
+::-webkit-scrollbar{
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb{
+  background-color: $color-primary;
+  border: 5px;
+}
+
+mat-grid-list{
+  background-color: $color;
+  height: 500px;
+  width: auto;
+}
+
+.day-name{
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  border-top: 2px solid $color;
+  border-right: 2px solid $color;
+  border-left: 2px solid $color;
+  background-color: $color;
+  gap: 3px;
+
+  div{
+    border: 2px solid $color;
+    background-color: white;
+  }
+}
+
+.empty-day{
+  background-color: beige;
+}
+
+.today{
+  background-color: aqua;
+  font-weight: bolder;
+}
+
+.event-list{
+  margin-bottom: 10px;
+}
+
+.mat-grid-contents{
+  padding: 0px;
+  display: flex;
+  flex-direction: column;
+}
+
+.mat-grid-tile-content {
+  flex-direction: column;
+  align-content: flex-start;
+  justify-content: space-between;
+  width: 100%;
+  border: 2px solid $color;
+
+}
+
+.date-number{
+ align-self: self-start;
+}
+
+.more-events-chip {
+  max-width: 200px;
+}
+
+.more-events-dots{
+  font-weight: bolder;
+  color: $color-primary;
+}
+
+
+
 
 

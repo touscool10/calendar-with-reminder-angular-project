@@ -7,14 +7,6 @@ import { Events } from '../event/interfaces';
 })
 export class CalendarService {
 
-  /*public onMonthOrYearChange: EventEmitter<{
-      selectedMonth     : number,
-      selectedYear      : number,
-      selectedMonthName :  string
-  }> = new EventEmitter(); */
-
-
-
   private updateSubject = new BehaviorSubject<Events[]>([]);
 
   private onMonthOrYearChange = new BehaviorSubject<{
@@ -42,13 +34,14 @@ export class CalendarService {
      return this.onMonthOrYearChange.asObservable();
   }
 
-  updateChields(events: Events[]) {
+  updateAllEvents(events: Events[]) {
       this.updateSubject.next(events);
   }
 
-  getUpdateSubject() {
+  getUpdateAllEvents() {
       return this.updateSubject.asObservable();
   }
 
 }
+
 

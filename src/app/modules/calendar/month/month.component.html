@@ -1,25 +1,61 @@
 
 
   <div class="day-name ml-4 mr-4" >
-    <div *ngFor="let weekday of days" class="text-center border">
+    <div *ngFor="let weekday of days" class="text-center">
       {{ weekday.abbreviation }}
     </div>
   </div>
 
-  <mat-grid-list cols="7" rowHeight="fit" gutterSize="1px"  class="ml-4 mr-4 mb-5">
 
-    <mat-grid-tile class="my-grid-title" [ngClass]="{'empty-day': !day.date, 'today': isToday(day) }"
+
+  <mat-grid-list cols="7" rowHeight="fit"  class="ml-4 mr-4 mb-5">
+
+    <mat-grid-tile [ngClass]="{'empty-day': !day.date, 'today': isToday(day) }"
       *ngFor="let day of monthDaysArray">
 
-      <div class="mat-grid-contents">
-        <div class="date-number" *ngIf="day.date">
+      <div class="mat-grid-tile-content">
+        <div class="date-number mb-2" *ngIf="day.date">
           {{ day.date }}
-          <div *ngIf="day.events.length > 0">
-            <div *ngFor="let event of day.events" class="pointer event-list" (click)="openEditEventDialog(event.id)" [style.color]="'white'" [style.backgroundColor]="event.color">
-              {{ event.description }}
-            </div>
+        </div>
+
+        <div *ngIf="day.events.length > 0 && day.events.length <= 3
+          && (!layoutService.isMobile && !this.layoutService.isTablet)" class="event-list">
+          <div *ngFor="let event of day.events" class="pointer mb-1" (click)="openEditEventDialog(event.id)" [style.color]="'white'" [style.backgroundColor]="event.color">
+            {{ event.description }}
           </div>
         </div>
+
+        <div *ngIf="day.events.length > 3 &&
+          (!layoutService.isMobile && !this.layoutService.isTablet)" class="pointer event-list">
+
+          <div class="pointer mb-2" (click)="openEditEventDialog(day.events[0].id)" [style.color]="'white'" [style.backgroundColor]="day.events[0].color">
+            {{ day.events[0].description }}
+          </div>
+
+          <div class="pointer mb-2" (click)="openEditEventDialog(day.events[1].id)" [style.color]="'white'" [style.backgroundColor]="day.events[1].color">
+            {{ day.events[1].description }}
+          </div>
+
+          <div class="pointer mb-2" (click)="openEditEventDialog(day.events[2].id)" [style.color]="'white'" [style.backgroundColor]="day.events[2].color">
+            {{ day.events[2].description }}
+          </div>
+
+          <div class="pointer mb-4" class="more-events-dots" (click)="openListEventsDialog(day)" [style.color]="'black'" background-color="primary">
+           ... more
+          </div>
+
+
+        </div>
+
+        <div *ngIf="day.events.length > 0 &&
+          (layoutService.isMobile || this.layoutService.isTablet)" class="mb-4">
+         <mat-chip-listbox >
+            <mat-chip-option color="accent" (click)="openListEventsDialog(day)">
+              {{ day.events.length }}
+            </mat-chip-option>
+          </mat-chip-listbox>
+        </div>
+
       </div>
 
     </mat-grid-tile>

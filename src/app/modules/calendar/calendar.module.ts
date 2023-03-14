@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 import { CalendarComponent } from './calendar/calendar.component';
-import { CreateEventComponent } from './event/create-event.component';
+import { CreateEventComponent } from './event/create-event/create-event.component';
 import { MonthComponent } from './month/month.component';
 
 
@@ -32,11 +32,10 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatCardModule } from '@angular/material/card';
-import { RouterModule } from '@angular/router';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { CalendarService } from './calendar/calendar.service';
+import { ListEventComponent } from './event/list-event/list-event.component';
 
 
 
@@ -44,7 +43,8 @@ import { CalendarService } from './calendar/calendar.service';
   declarations: [
     CalendarComponent,
     CreateEventComponent,
-    MonthComponent
+    MonthComponent,
+    ListEventComponent
   ],
   imports: [
     CommonModule,
@@ -73,7 +73,8 @@ import { CalendarService } from './calendar/calendar.service';
     MatFormFieldModule,
     ReactiveFormsModule,
     MatGridListModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatChipsModule
   ],
   providers: [
     CalendarService,

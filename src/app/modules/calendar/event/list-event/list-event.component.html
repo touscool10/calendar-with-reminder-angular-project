@@ -1,0 +1,16 @@
+<h2 class="m-4 row d-flex justify-content-between">
+  <span>Your Events</span>
+  <button mat-raised-button (click)="closeDialog()">Close</button>
+</h2>
+<div >
+
+
+<div *ngIf="day.events.length > 0" class="m-4 event-list d-flex flex-column">
+  <div *ngFor="let event of day.events" class="pointer mb-4" (click)="openEditEventDialog(event.id)" [style.color]="'white'" [style.backgroundColor]="event.color">
+    {{ event.description }}
+  </div>
+</div>
+
+
+
+
