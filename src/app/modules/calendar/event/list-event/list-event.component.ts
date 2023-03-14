@@ -38,8 +38,6 @@ export class ListEventComponent implements OnInit, OnDestroy {
     }
 
     openEditEventDialog(eventId: number | undefined) {
-      console.log(' this.allEvents',  this.allEvents);
-
       const config = new MatDialogConfig();
 
       config.disableClose = true;

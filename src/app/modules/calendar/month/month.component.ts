@@ -233,9 +233,6 @@ export class MonthComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
 
-        if (result) {
-          console.log("result in openListEventsDialog method : ", result);
-        }
     });
   }
 
