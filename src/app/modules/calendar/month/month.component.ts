@@ -95,9 +95,6 @@ export class MonthComponent implements OnInit {
     }
     this.computeEmptyDays(this.selectedMonth, this.selectedYear);
     this.populateMonth();
-
-    console.log('this.monthDaysArray: ', this.monthDaysArray);
-
   }
 
   private computeEmptyDays(month: number, year: number){
@@ -164,9 +161,6 @@ export class MonthComponent implements OnInit {
   getDaysEvents(date: number, month: number, year: number){
 
     let events: Events[] = [];
-
-    console.log("this.allEvents : ", this.allEvents);
-
       if(this.allEvents.length > 0){
         this.allEvents.forEach((event) => {
           if(event.day === date && event.month === month  && event.year === year ){
@@ -189,9 +183,6 @@ export class MonthComponent implements OnInit {
       eventsAux.push(event);
     });
 
-    console.log("eventsAux : ", eventsAux);
-
-
     eventsAux.sort(function(a, b){
       return (a.hourFormated as number) - (b.hourFormated as number)
     });
@@ -206,8 +197,6 @@ export class MonthComponent implements OnInit {
     hour = hour[0] + hour[1];
     hour = parseInt(hour);
 
-    console.log("hour : ", hour);
-
     return hour;
   }
 
@@ -218,7 +207,6 @@ export class MonthComponent implements OnInit {
 
   refreshAllEvents(value : Events[]){
     this.allEvents = value;
-    console.log('ENTREI refreshAllEvents :', [this.allEvents, this.selectedMonth, this.selectedYear]);
   }
 
   openEditEventDialog(eventId: number | undefined) {
