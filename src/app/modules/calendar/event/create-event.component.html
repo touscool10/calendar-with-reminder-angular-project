@@ -1,0 +1,70 @@
+
+<h2 class="m-4 row d-flex justify-content-between">
+  <span *ngIf="editMode">Edit event</span>
+  <span *ngIf="!editMode">Create event</span>
+  <button mat-raised-button (click)="closeDialog()">Close</button>
+</h2>
+<div >
+
+  <form [formGroup]="createEventForm">
+
+      <!-- Description - Date - Hour -->
+
+      <div class="row ml-4 mr-4 mb-4 ">
+          <mat-form-field class="w-100" appearance="outline">
+            <input matInput placeholder="Description" formControlName="description">
+             <mat-error *ngIf="eventDescription.errors?.['maxlength']">
+              Maximum length of 30 characters!
+            </mat-error>
+        </mat-form-field>
+
+      </div>
+
+      <!-- class="col-sm-12 col-md-6" -->
+
+
+      <div class="row ml-4 mb-3 pl-0">
+        <div class="col-sm-12 col-md-6  pl-0">
+          <mat-form-field class=""  appearance="outline">
+            <mat-label>Choose a date</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="date">
+            <mat-hint align="end">DD/MM/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row ml-4 mb-3">
+        <div class="col-sm-12 col-md-6  pl-0">
+          <mat-form-field appearance="outline">
+            <mat-label>Type an hour</mat-label>
+            <input matInput type="time" formControlName="hour">
+          </mat-form-field>
+        </div>
+      </div>
+
+
+      <div class="row ml-4 mb-5">
+        <div class="col-sm-12 col-md-6 p-0">
+          <mat-form-field appearance="outline">
+            <mat-label>Select event color</mat-label>
+          <input matInput type="color" formControlName="color">
+        </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row m-4 d-flex justify-content-between">
+        <button *ngIf="!editMode" mat-raised-button color="primary" (click)="createEvent()" [disabled]="!createEventForm.valid" >Create</button>
+        <button *ngIf="editMode" mat-raised-button color="primary" class="mt-3" [disabled]="!createEventForm.valid" (click)="saveChanges()" >Edit</button>
+        <button *ngIf="editMode" mat-fab color="warn" (click)="deleteEvent(data.eventId)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+
+  </form>
+
+
+</div>
+
+

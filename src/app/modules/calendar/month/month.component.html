@@ -1,0 +1,27 @@
+
+
+  <div class="day-name ml-4 mr-4" >
+    <div *ngFor="let weekday of days" class="text-center border">
+      {{ weekday.abbreviation }}
+    </div>
+  </div>
+
+  <mat-grid-list cols="7" rowHeight="fit" gutterSize="1px"  class="ml-4 mr-4 mb-5">
+
+    <mat-grid-tile class="my-grid-title" [ngClass]="{'empty-day': !day.date, 'today': isToday(day) }"
+      *ngFor="let day of monthDaysArray">
+
+      <div class="mat-grid-contents">
+        <div class="date-number" *ngIf="day.date">
+          {{ day.date }}
+          <div *ngIf="day.events.length > 0">
+            <div *ngFor="let event of day.events" class="pointer event-list" (click)="openEditEventDialog(event.id)" [style.color]="'white'" [style.backgroundColor]="event.color">
+              {{ event.description }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </mat-grid-tile>
+
+  </mat-grid-list>

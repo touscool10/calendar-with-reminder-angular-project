@@ -1,0 +1,43 @@
+
+
+@mixin responsive-dialogs {
+
+  //@media screen and (max-width: 959px) {
+  @media screen and (max-width: 780px) {
+
+    .modal-panel {
+      min-width: 0 !important;
+      max-width: 100% !important;
+      max-height: 100% !important;
+      width: 100% !important;
+      height: 100% !important;
+
+      /*.mat-dialog-container {
+        border-radius: 0;
+        padding: 14px !important;
+      }*/
+
+    }
+
+  }
+
+  @media screen and (min-width: 781px) {
+
+    .modal-panel {
+      min-width: 70% !important;
+      max-width: 90% !important;
+      min-height: 80% !important;
+
+      //width: 50% !important;
+      //height: 50% !important;
+
+      /*.mat-dialog-container {
+        border-radius: 0;
+        padding: 14px !important;
+      }*/
+
+    }
+
+  }
+
+}

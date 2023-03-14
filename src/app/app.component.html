@@ -1,0 +1,21 @@
+
+<mat-sidenav-container fullscreen>
+  <mat-sidenav align="start" #sidenav>
+      <mat-nav-list (click)="sidenav.close()">
+
+        <a mat-list-item routerLink="calendar">
+          <mat-icon>calendar_today</mat-icon>
+          Calendar
+        </a>
+      </mat-nav-list>
+  </mat-sidenav>
+  <!-- Body -->
+
+<mat-toolbar color="primary">
+    <mat-icon class="menu-button pointer mr-3" (click)="sidenav.open()">menu</mat-icon>
+    <button mat-raised-button color="accent" routerLink="calendar">Open Calendar</button>
+</mat-toolbar>
+
+<router-outlet></router-outlet>
+
+</mat-sidenav-container>
