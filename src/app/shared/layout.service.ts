@@ -15,7 +15,6 @@ export class LayoutService {
           ]);
         layoutChanges.subscribe(result => {
             this.isMobileFlag = result.matches;
-            console.warn(this.isMobileFlag)
         });
 
         const layoutChangesTablet = breakpointObserver.observe([
@@ -23,7 +22,6 @@ export class LayoutService {
         ]);
         layoutChangesTablet.subscribe(result => {
             this.isTabletFlag = result.matches;
-            console.warn(this.isTabletFlag)
         });
     }
 
