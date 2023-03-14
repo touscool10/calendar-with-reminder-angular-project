@@ -147,17 +147,6 @@ export class MonthComponent implements OnInit {
 
   };
 
-  /*
-  getSelectedTabInfos(event: MatTabChangeEvent){
-
-    let monthName: string  = event.tab.textLabel;
-    let selectedMonth: Month | number | undefined  = this.months.find(m => m.name === monthName);
-    selectedMonth = selectedMonth ? selectedMonth.id : 0;
-    this.getSelectedMonth(selectedMonth);
-
-  }*/
-
-
   getDaysEvents(date: number, month: number, year: number){
 
     let events: Events[] = [];
