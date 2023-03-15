@@ -7,4 +7,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Project Calendar';
+
+  calendarOpened: boolean = false;
+
+
+
+  openOrCloseCalendar(){
+    this.calendarOpened = !this.calendarOpened;
+  }
+
 }

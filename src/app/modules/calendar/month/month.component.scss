@@ -6,6 +6,7 @@ mat-grid-tile{
   background-color: white;
   grid-template-rows: 200px auto;
   overflow: auto;
+  border-bottom-right-radius: 10px;
 }
 
 ::-webkit-scrollbar{
@@ -19,10 +20,12 @@ mat-grid-tile{
 }
 
 mat-grid-list{
-  //background-color: $color;
-  //height: 500px;
-  //width: 500px;
-
+  //background-color: rgb(250, 242, 242);
+  background-color: $color-primary;
+  height: 600px;
+  grid-template-rows: auto;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
 }
 
 .day-name{
@@ -43,7 +46,7 @@ mat-grid-list{
 .sunday{
   background-color: $color-accent;
 
-  border-top-left-radius: 5px;
+  border-top-left-radius: 10px;
   /*border-top-right-radius
   border-bottom-right-radius
   border-bottom-left-radius*/
@@ -52,7 +55,7 @@ mat-grid-list{
 .saturday{
   background-color: $color-accent;
 
-  border-top-right-radius: 5px;
+  border-top-right-radius: 10px;
   /*border-top-left-radius
   border-bottom-right-radius
   border-bottom-left-radius*/

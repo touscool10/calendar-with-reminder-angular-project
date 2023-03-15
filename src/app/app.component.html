@@ -3,7 +3,7 @@
   <mat-sidenav align="start" #sidenav>
       <mat-nav-list (click)="sidenav.close()">
 
-        <a mat-list-item routerLink="calendar">
+        <a mat-list-item routerLink="calendar" *ngIf="!calendarOpened" (click)="openOrCloseCalendar()">
           <mat-icon>calendar_today</mat-icon>
           Calendar
         </a>
@@ -12,7 +12,8 @@
 
 <mat-toolbar color="primary">
     <mat-icon class="menu-button pointer mr-3" (click)="sidenav.open()">menu</mat-icon>
-    <button mat-raised-button color="accent" routerLink="calendar">Open Calendar</button>
+    <button mat-raised-button *ngIf="!calendarOpened" color="accent" routerLink="calendar" (click)="openOrCloseCalendar()">Open Calendar</button>
+    <button mat-raised-button *ngIf="calendarOpened" color="accent" routerLink="/"  (click)="openOrCloseCalendar()">Close Calendar</button>
 </mat-toolbar>
 
 <router-outlet></router-outlet>

@@ -15,7 +15,7 @@
 
 
 
-<mat-grid-list cols="7"  rowHeight="fit"  class="ml-4 mr-4 mb-5">
+<mat-grid-list cols="7" rowHeight="fit" class="ml-4 mr-4 mb-5">
 
   <mat-grid-tile [ngClass]="{'empty-day': !day.date, 'today': isToday(day) }"
     *ngFor="let day of monthDaysArray">
