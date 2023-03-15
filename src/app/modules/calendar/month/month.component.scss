@@ -1,97 +1,86 @@
 $color:  grey;
 $color-primary: #3f51b5;
-
-/*mat-grid-tile{
-  background-color: white;
-  border: 1px solid grey;
-  grid-template-rows: 200px auto;
-  overflow: auto;
-}
-
-mat-grid-list{
-  background-color: grey;
-  height: 500px;
-  width: auto;
-}
-
-.day-name{
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  border: 5px solid grey;
-}
-
-.empty-day{
-  background-color: beige;
-}
-
-.today{
-  border: 1px solid aqua;
-  background-color: aqua;
-  font-weight: bolder;
-}
-
-.event-list{
-  margin-bottom: 10px;
-}
-
-.mat-grid-contents{
-  padding: 0px;
-  display: flex;
-  flex-direction: column;
-}
-
-.mat-grid-tile-content{
-
-} */
+$color-accent: #ff4081;
 
 mat-grid-tile{
   background-color: white;
-  border: 1px solid $color;
   grid-template-rows: 200px auto;
   overflow: auto;
 }
 
 ::-webkit-scrollbar{
-  width: 10px;
+  //height: 1px;
+  width: 5px;
 }
 
 ::-webkit-scrollbar-thumb{
   background-color: $color-primary;
-  border: 5px;
+  border-radius: 3px;
 }
 
 mat-grid-list{
-  background-color: $color;
-  height: 500px;
-  width: auto;
+  //background-color: $color;
+  //height: 500px;
+  //width: 500px;
+
 }
 
 .day-name{
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  border-top: 2px solid $color;
-  border-right: 2px solid $color;
-  border-left: 2px solid $color;
-  background-color: $color;
-  gap: 3px;
+  background-color: $color-primary;
+  color: white;
+  border-radius: 5px;
 
   div{
-    border: 2px solid $color;
-    background-color: white;
+
+    span{
+      font-size: 15px;
+    }
   }
 }
 
+.sunday{
+  background-color: $color-accent;
+
+  border-top-left-radius: 5px;
+  /*border-top-right-radius
+  border-bottom-right-radius
+  border-bottom-left-radius*/
+}
+
+.saturday{
+  background-color: $color-accent;
+
+  border-top-right-radius: 5px;
+  /*border-top-left-radius
+  border-bottom-right-radius
+  border-bottom-left-radius*/
+}
+
+.today-name{
+  font-weight: bolder;
+}
+
 .empty-day{
-  background-color: beige;
+
 }
 
 .today{
-  background-color: aqua;
+  background-color: rgb(195, 213, 252);
   font-weight: bolder;
 }
 
 .event-list{
-  margin-bottom: 10px;
+
+  padding-bottom: 10px;
+  padding-left: 25px;
+  width: inherit;
+  padding-right: 10px;
+
+  div{
+    word-wrap: break-word;
+  }
 }
 
 .mat-grid-contents{
@@ -105,16 +94,12 @@ mat-grid-list{
   align-content: flex-start;
   justify-content: space-between;
   width: 100%;
-  border: 2px solid $color;
+  //border: 2px solid $color;
 
 }
 
 .date-number{
  align-self: self-start;
-}
-
-.more-events-chip {
-  max-width: 200px;
 }
 
 .more-events-dots{

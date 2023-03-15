@@ -1,26 +1,33 @@
 
 
 <div class="day-name ml-4 mr-4" >
-  <div *ngFor="let weekday of days" class="text-center">
-    {{ weekday.abbreviation }}
+  <div *ngFor="let weekday of days" class="text-center" [ngClass]="{'sunday': weekday.id === 0, 'saturday': weekday.id === 6 }">
+    <span *ngIf="!layoutService.isMobile && !this.layoutService.isTablet"
+          [ngClass]="{'today-name' : weekday.id === getTodayWeekDay() && selectedMonthIsActual()}">
+          {{ weekday.name }}
+    </span>
+    <span *ngIf="layoutService.isMobile || this.layoutService.isTablet"
+          [ngClass]="{'today-name' : weekday.id === getTodayWeekDay() && selectedMonthIsActual()}" >
+          {{ weekday.abbreviation }}
+    </span>
   </div>
 </div>
 
 
 
-<mat-grid-list cols="7" rowHeight="fit"  class="ml-4 mr-4 mb-5">
+<mat-grid-list cols="7"  rowHeight="fit"  class="ml-4 mr-4 mb-5">
 
   <mat-grid-tile [ngClass]="{'empty-day': !day.date, 'today': isToday(day) }"
     *ngFor="let day of monthDaysArray">
 
     <div class="mat-grid-tile-content">
-      <div class="date-number mb-2" *ngIf="day.date">
+      <div class="date-number pl-1 pt-1 mb-2" *ngIf="day.date">
         {{ day.date }}
       </div>
 
       <div *ngIf="day.events.length > 0 && day.events.length <= 3
         && (!layoutService.isMobile && !this.layoutService.isTablet)" class="event-list">
-        <div *ngFor="let event of day.events" class="pointer mb-1" (click)="openEditEventDialog(event.id)" [style.color]="'white'" [style.backgroundColor]="event.color">
+        <div *ngFor="let event of day.events" class="pointer mb-1" (click)="openEditEventDialog(event.id)" [style.color]="event.color">
           {{ event.description }}
         </div>
       </div>
@@ -28,19 +35,19 @@
       <div *ngIf="day.events.length > 3 &&
         (!layoutService.isMobile && !this.layoutService.isTablet)" class="pointer event-list">
 
-        <div class="pointer mb-2" (click)="openEditEventDialog(day.events[0].id)" [style.color]="'white'" [style.backgroundColor]="day.events[0].color">
+        <div class="pointer mb-2" (click)="openEditEventDialog(day.events[0].id)" [style.color]="day.events[0].color">
           {{ day.events[0].description }}
         </div>
 
-        <div class="pointer mb-2" (click)="openEditEventDialog(day.events[1].id)" [style.color]="'white'" [style.backgroundColor]="day.events[1].color">
+        <div class="pointer mb-2" (click)="openEditEventDialog(day.events[1].id)" [style.color]="day.events[1].color">
           {{ day.events[1].description }}
         </div>
 
-        <div class="pointer mb-2" (click)="openEditEventDialog(day.events[2].id)" [style.color]="'white'" [style.backgroundColor]="day.events[2].color">
+        <div class="pointer mb-2" (click)="openEditEventDialog(day.events[2].id)" [style.color]="day.events[2].color">
           {{ day.events[2].description }}
         </div>
 
-        <div class="pointer mb-4" class="more-events-dots" (click)="openListEventsDialog(day)" [style.color]="'black'" background-color="primary">
+        <div class="pointer mb-4" class="more-events-dots" (click)="openListEventsDialog(day)" [style.color]="'black'" >
          ... more
         </div>
 
@@ -50,9 +57,9 @@
       <div *ngIf="day.events.length > 0 &&
         (layoutService.isMobile || this.layoutService.isTablet)" class="mb-4">
        <mat-chip-listbox >
-          <mat-chip-option color="accent" (click)="openListEventsDialog(day)">
+          <mat-chip color="accent" (click)="openListEventsDialog(day)">
             {{ day.events.length }}
-          </mat-chip-option>
+          </mat-chip>
         </mat-chip-listbox>
       </div>
 

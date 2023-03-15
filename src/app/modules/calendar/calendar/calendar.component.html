@@ -17,16 +17,19 @@
   </div>
 </div>
 
-<div class="header-calendar ml-4 d-flex">
+<div class="header-calendar ml-4 mr-4 d-flex justify-content-center">
+
     <button mat-mini-fab color="primary"  (click)="getMonthAndYear(-1, null);" class="btn-btn-prev mr-3" [disabled]="selectedMonth === 0">
       <mat-icon >navigate_before</mat-icon>
     </button>
+
+    <h1 class="ml-4 mr-4">{{selectedMonthName}} {{selectedYear}}</h1>
+
 
     <button mat-mini-fab  (click)="getMonthAndYear(1, null);" class="btn-btn-next" [disabled]="selectedMonth === 11">
       <mat-icon >navigate_next</mat-icon>
     </button>
 
-    <h1 class="ml-4">{{selectedMonthName}} {{selectedYear}}</h1>
 </div>
 
 

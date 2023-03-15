@@ -12,8 +12,8 @@
 
       <div class="row ml-4 mr-4 mb-4 ">
           <mat-form-field class="w-100" appearance="outline">
-            <input matInput placeholder="Description" formControlName="description">
-             <mat-error *ngIf="eventDescription.errors?.['maxlength']">
+            <input #descript matInput placeholder="Description" formControlName="description" (keyup)="getMaximumLength(descript.value)">
+            <mat-error *ngIf="maximumLengthReached">
               Maximum length of 30 characters!
             </mat-error>
         </mat-form-field>

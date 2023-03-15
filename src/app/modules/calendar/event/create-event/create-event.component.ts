@@ -29,6 +29,7 @@ export class CreateEventComponent implements OnInit, OnDestroy {
   public editMode: boolean  = (!this.data.eventId) ? false : this.data.editMode as boolean;
   public events: Events[] = [];
   public filterDate!: Date;
+  public maximumLengthReached: boolean = false;
 
   createEventForm = this.formBuilder.group({
     id: [''],
@@ -74,6 +75,7 @@ export class CreateEventComponent implements OnInit, OnDestroy {
         color:  actualEvent?.color,
       });
     }
+
 
 
     saveChanges() {
@@ -199,10 +201,11 @@ export class CreateEventComponent implements OnInit, OnDestroy {
       this.dialogRef.close(event);
     }
 
-
-
-    get eventDescription(){
-      return this.createEventForm.controls['description'];
+    getMaximumLength(description: string){
+      this.maximumLengthReached = false;
+      if (description.length > 30) {
+        this.maximumLengthReached = true;
+      }
     }
 
 }

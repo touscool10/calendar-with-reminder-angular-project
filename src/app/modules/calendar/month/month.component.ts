@@ -132,6 +132,10 @@ export class MonthComponent implements OnInit {
     this.generateMonthDays();
   }
 
+  getTodayWeekDay(){
+    return new  Date().getDay();
+  }
+
   isToday(date: MonthDays){
     this.dateIsToday = false;
 
@@ -234,6 +238,16 @@ export class MonthComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
 
     });
+  }
+
+  selectedMonthIsActual(){
+    let result = false;
+    if(this.selectedMonth === new Date().getMonth()){
+
+      result = true;
+    }
+
+    return result;
   }
 
 
