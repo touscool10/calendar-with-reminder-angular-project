@@ -9,6 +9,10 @@ mat-grid-tile{
   border-bottom-right-radius: 10px;
 }
 
+mat-grid-tile:hover{
+  background-color: #c6cecf;
+}
+
 ::-webkit-scrollbar{
   //height: 1px;
   width: 5px;
@@ -19,14 +23,23 @@ mat-grid-tile{
   border-radius: 3px;
 }
 
-mat-grid-list{
+.days-grid-list-mobile{
   //background-color: rgb(250, 242, 242);
   background-color: $color-primary;
-  height: 600px;
+  min-height:  50vh;
   grid-template-rows: auto;
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;
 }
+
+.days-grid-list-desktop{
+  background-color: $color-primary;
+  min-height: 65vh;
+  grid-template-rows: auto;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
 
 .day-name{
   display: grid;
@@ -70,8 +83,14 @@ mat-grid-list{
 }
 
 .today{
-  background-color: rgb(195, 213, 252);
+  //background-color: rgb(195, 213, 252);
   font-weight: bolder;
+
+  .date-number{
+    background-color: $color-accent;
+    border-radius: 30px;
+    padding-right: 5px;
+  }
 }
 
 .event-list{

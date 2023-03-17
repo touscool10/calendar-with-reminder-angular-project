@@ -1,12 +1,16 @@
 
 <div class="calendar-header d-flex justify-content-between">
   <mat-form-field appearance="outline" class="year-list ml-4 mt-3">
-    <mat-select [(value)]="selectedYear"  placeholder="Select the year" (selectionChange)="getMonthAndYear(null, selectedYear);">
+    <mat-select [(value)]="selectedYear"  placeholder="Select the year" (selectionChange)="computeMonthAndYear(null, selectedYear);">
       <mat-option *ngFor="let year of years" [value]="year">
         {{ year }}
       </mat-option>
     </mat-select>
   </mat-form-field>
+
+  <div>
+    <button mat-button color="accent" class="mt-4 goto-today-button" (click)="computeMonthAndYear(null, null, true)">Today</button>
+  </div>
 
   <div class="text-right mr-4 mt-3">
 
@@ -19,14 +23,14 @@
 
 <div class="header-calendar ml-4 mr-4 d-flex justify-content-center">
 
-    <button mat-mini-fab color="primary"  (click)="getMonthAndYear(-1, null);" class="btn-btn-prev mr-3" [disabled]="selectedMonth === 0">
+    <button mat-mini-fab color="primary"  (click)="computeMonthAndYear(-1, null, false);" class="btn-btn-prev mr-3" >
       <mat-icon >navigate_before</mat-icon>
     </button>
 
     <h1 class="ml-4 mr-4">{{selectedMonthName}} {{selectedYear}}</h1>
 
 
-    <button mat-mini-fab  (click)="getMonthAndYear(1, null);" class="btn-btn-next" [disabled]="selectedMonth === 11">
+    <button mat-mini-fab  (click)="computeMonthAndYear(1, null, false);" class="btn-btn-next" >
       <mat-icon >navigate_next</mat-icon>
     </button>
 

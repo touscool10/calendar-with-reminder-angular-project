@@ -1,4 +1,4 @@
-import { BreakpointObserver } from '@angular/cdk/layout';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { LayoutService } from 'src/app/shared/layout.service';
@@ -18,6 +18,8 @@ export class MonthComponent implements OnInit {
   public allEvents: Events[] = [];
   public selectedMonth!: number;
   public selectedYear!: number;
+  public rowHeight: string = 'fit';
+  public mobileOrTabletPortrait: boolean = false;
 
   public days: Day[] = [
     { name: 'Sunday',     id: 0, abbreviation: 'Sun' },
@@ -44,6 +46,7 @@ export class MonthComponent implements OnInit {
     private calendarService: CalendarService,
     private dialog: MatDialog,
     public layoutService: LayoutService,
+    public reponsive: BreakpointObserver
   ) {
 
   }
@@ -51,12 +54,24 @@ export class MonthComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.calendarService
-          .getUpdateAllEvents()
-          .subscribe(eventsArray => {
-            this.refreshAllEvents(eventsArray);
-            this.init();
+   this.reponsive.observe([
+      Breakpoints.HandsetPortrait,
+      Breakpoints.TabletPortrait
+    ]).subscribe(result => {
+      const breakPoints = result.breakpoints;
+
+      if (breakPoints[Breakpoints.HandsetPortrait] || breakPoints[Breakpoints.TabletPortrait]) {
+        this.mobileOrTabletPortrait = true;
+      }
     });
+
+
+    this.calendarService
+      .getUpdateAllEvents()
+        .subscribe(eventsArray => {
+          this.refreshAllEvents(eventsArray);
+          this.init();
+      });
 
   }
 

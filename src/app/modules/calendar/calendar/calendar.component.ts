@@ -67,7 +67,13 @@ export class CalendarComponent implements OnInit {
     config.autoFocus = true;
     config.panelClass = "modal-panel";
 
-    config.data = { allEvents: this.userEvents, editMode: false, eventId: null };
+    config.data = {
+      allEvents: this.userEvents,
+      editMode: false,
+      eventId: null,
+      selectedMonth: this.selectedMonth,
+      selectedYear: this.selectedYear
+    };
 
     const dialogRef = this.dialog.open(CreateEventComponent, config);
 
@@ -113,14 +119,28 @@ export class CalendarComponent implements OnInit {
     this.userEvents = events;
   }
 
-  getMonthAndYear(month?: number | null, year?: number | null) {
+  computeMonthAndYear(month?: number | null, year?: number | null, goToToday?: boolean) {
 
     if(month){
       this.selectedMonth = this.selectedMonth + month;
     }
-
     if(year){
       this.selectedYear = year;
+    }
+
+
+    if (this.selectedMonth > 11) {
+      this.selectedMonth = 0;
+      this.selectedYear = this.selectedYear + 1;
+    }
+    if (this.selectedMonth < 0) {
+      this.selectedMonth = 11;
+      this.selectedYear = this.selectedYear - 1;
+    }
+
+    if (goToToday) {
+      this.selectedMonth = new Date().getMonth();
+      this.selectedYear = new Date().getFullYear();
     }
 
     this.getMonthName(this.selectedMonth);
@@ -139,8 +159,5 @@ export class CalendarComponent implements OnInit {
 
     return this.selectedMonthName ;
   }
-
-
-
 
 }

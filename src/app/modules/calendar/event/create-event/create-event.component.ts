@@ -30,17 +30,17 @@ export class CreateEventComponent implements OnInit, OnDestroy {
   public events: Events[] = [];
   public filterDate!: Date;
   public maximumLengthReached: boolean = false;
-
-  createEventForm = this.formBuilder.group({
-    id: [''],
-    date: [new Date(), Validators.required],
-    description: ['', [Validators.required, Validators.maxLength(30)]],
-    hour: ['', Validators.required],
-    color: ['', Validators.required]
-  });
+  public defaultDateForDatePicker: Date = new Date();
+  public createEventForm!: FormGroup;
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: { allEvents: Events[], editMode?: boolean, eventId?: number },
+    @Inject(MAT_DIALOG_DATA) public data: {
+                                      allEvents: Events[],
+                                      selectedYear: number,
+                                      selectedMonth: number
+                                      editMode?: boolean,
+                                      eventId?: number
+                                    },
     public dialogRef: MatDialogRef<CreateEventComponent>,
 
     private formBuilder: FormBuilder,
@@ -58,6 +58,17 @@ export class CreateEventComponent implements OnInit, OnDestroy {
     }
 
     init() {
+
+      this.setDefaultDateForDatePicker();
+
+      this.createEventForm = this.formBuilder.group({
+        id: [''],
+        date: [this.defaultDateForDatePicker, Validators.required],
+        description: ['', [Validators.required, Validators.maxLength(30)]],
+        hour: ['', Validators.required],
+        color: ['', Validators.required]
+      });
+
       if (this.data.eventId) {
         this.initializeEditMode();
       }
@@ -199,6 +210,13 @@ export class CreateEventComponent implements OnInit, OnDestroy {
 
     closeDialog(event?: any){
       this.dialogRef.close(event);
+    }
+
+    setDefaultDateForDatePicker(){
+      let today = new Date().getDate();
+      this.defaultDateForDatePicker = new Date(this.data.selectedYear, this.data.selectedMonth, today);
+
+      return this.defaultDateForDatePicker;
     }
 
     getMaximumLength(description: string){
